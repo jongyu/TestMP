@@ -9,11 +9,13 @@
     <version>1.0</version>
 
     <properties>
+        <appium.version>7.4.1</appium.version>
+        <kotlinpoet.version>1.7.2</kotlinpoet.version>
         <jwt.version>3.12.0</jwt.version>
-        <problem-spring-web.version>0.27.0-RC.0</problem-spring-web.version>
-        <hutool.version>5.5.6</hutool.version>
+        <hutool.version>5.5.7</hutool.version>
         <fastjson.version>1.2.75</fastjson.version>
         <springfox.version>3.0.0</springfox.version>
+        <problem.version>0.27.0-RC.0</problem.version>
         <pagehelper.version>1.3.0</pagehelper.version>
         <druid-spring.version>1.2.4</druid-spring.version>
         <mybatis-spring.version>2.1.4</mybatis-spring.version>
@@ -52,16 +54,20 @@
         </dependency>
 
         <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>kotlinpoet</artifactId>
+            <version>${kotlinpoet.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>${jwt.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.zalando</groupId>
-            <artifactId>problem-spring-web-starter</artifactId>
-            <version>${problem-spring-web.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -73,6 +79,16 @@
             <version>${hutool.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem-spring-web-starter</artifactId>
+            <version>${problem.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
