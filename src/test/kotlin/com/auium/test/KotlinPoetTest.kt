@@ -1,48 +1,41 @@
 package com.auium.test
 
+import com.auium.framework.AuiumPage
 import com.squareup.kotlinpoet.*
 import org.junit.jupiter.api.Test
+import org.openqa.selenium.WebElement
 
 class KotlinPoetTest {
 
     @Test
     fun generateKotlinTest() {
-        val greeterClass = ClassName("", "Greeter")
-        val file = FileSpec.builder("", "HelloWorld")
+        val pageFile = FileSpec.builder("com.auium.page", "HomePage")
             .addType(
-                TypeSpec.classBuilder("Greeter")
-                    .primaryConstructor(
-                        FunSpec.constructorBuilder()
-                            .addParameter("name", String::class)
-                            .build()
-                    )
-                    .addProperty(
-                        PropertySpec.builder("name", String::class)
-                            .initializer("name")
-                            .build()
-                    )
-                    .addFunction(
-                        FunSpec.builder("greet")
-                            .addStatement("println(%P)", "Hello, \$name")
-                            .build()
-                    )
+                TypeSpec.classBuilder("HomePage").superclass(AuiumPage::class)
                     .addFunction(
                         FunSpec.builder("skip")
-                            .returns(WildcardTypeName::class)
-                            .addStatement("return %S", "element(test)")
+                            .returns(WebElement::class)
+                            .addStatement("return element(%S)", "By1")
                             .build()
                     )
                     .build()
-            )
-            .addFunction(
-                FunSpec.builder("main")
-                    .addParameter("args", String::class, KModifier.VARARG)
-                    .addStatement("%T(args[0]).greet()", greeterClass)
-                    .build()
-            )
+            ).build()
+//        pageFile.writeTo(File("src/test/kotlin"))
+
+        val android = PropertySpec.builder("android", String::class)
+            .addModifiers(KModifier.PRIVATE)
+            .initializer(""""Oreo v.8.1"""")
+            .build()
+        val companion = TypeSpec.companionObjectBuilder().addProperty(android)
             .build()
 
-        file.writeTo(System.out)
+
+        val handleFile = FileSpec.builder("com.auium.handle", "HomeHandle")
+            .addType(companion)
+            .addFunction(
+                FunSpec.builder("clickSkip").build()
+            ).build()
+        handleFile.writeTo(System.out)
     }
 
 }
