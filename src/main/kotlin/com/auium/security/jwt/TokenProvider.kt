@@ -52,7 +52,7 @@ class TokenProvider {
             if (!authToken.isNullOrBlank()) {
                 val verifier = JWT.require(algorithm).withIssuer(issuer).build()
                 val jwt = verifier.verify(authToken)
-                return jwt.claims.containsKey("auth")
+                return jwt.claims.containsKey(authKey)
             }
         } catch (ex: JWTVerificationException) {
             log.info("Invalid JWT token.")

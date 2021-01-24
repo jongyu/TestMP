@@ -47,7 +47,7 @@ class SecurityConfiguration(
             .exceptionHandling().authenticationEntryPoint(problemSupport).accessDeniedHandler(problemSupport)
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().authorizeRequests()
-            .antMatchers("/auth/login", "/auth/register").permitAll()
+            .antMatchers("/auth/**").permitAll()
             .anyRequest().authenticated()
             .and().httpBasic()
             .and().apply(securityConfigurerAdapter())
