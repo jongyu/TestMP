@@ -1,5 +1,6 @@
 package com.auium.config
 
+import com.auium.rest.errors.ExceptionHandling
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
